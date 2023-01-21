@@ -21,13 +21,13 @@ const db= knex ({
     host: '127.0.0.1',
     port: 3306,
     user: 'root',
-    password: '21Aezakmi#',
+    password: '',
     database: 'transaction_app'
   }
 });
 
 const auth=(req, res, next)=>{
-  let {accessToken}=req.body;
+  let accessToken=req.headers['authorization'];
   jwt.verify(accessToken, 'access', (err,user)=>{
     if(!err){
       req.user=user;
