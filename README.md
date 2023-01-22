@@ -2,12 +2,13 @@
 This project is the submission for the candidature of Aota Node.js intern by Nevin Mathews Kuruvilla.
 ## Introduction
 This is a simple backend API built using Node.js, Express.js, MySQL and Docker.\
-The API has three routes:
-### 1. /signup:
+The API has three routes: /signUp, /logIn and /transactionList.\
+The SQL queries have been built using the help of a query builder called [knex](https://knexjs.org/). 
+### 1. /signUp:
 This route creates new users using the fields: name, email, mobile, password and returns the id of the user along with the access and refresh tokens using JWT.\
 The password is hashed using the Bcrypt algorithm with 10 salt rounds.
 ![image](/testcases/signin.PNG)
-### 2. /login: 
+### 2. /logIn: 
 This route recieves two fields in the request body: mobile and password.\
 The route hashes the recieved password and checks it with the hashed password in the database.\
 The client recieves two tokens: access and refresh tokens on successful authentication
