@@ -24,8 +24,10 @@ This project requires [Docker](https://docs.docker.com/get-docker/) and [MySQL](
 Start Docker Desktop to ensure that the Docker Daemon process is running.
 
 ## Run
-1. Run the SQL commands present in Schema.sql file using your MySQL shell or workbench
-2. Run the following docker command in terminal to build the image and get the containers up and running:
+1. Run the SQL commands present in Schema.sql file using your MySQL shell or workbench using a connection port of **3307** which is using in the project.
+2. Change the MYSQL_ROOT_PASSWORD in docker-compose.yaml to your system setting. (line 19)
+3. Change the password field in the knex connection query in server.js. (line 27)
+4. Run the following docker command in terminal to build the image and get the containers up and running:
   ```bash
     docker-compose -f docker-compose.yaml up -d
   ```
@@ -33,3 +35,10 @@ Start Docker Desktop to ensure that the Docker Daemon process is running.
 ```bash
   docker-compose -f docker-compose.yaml down
 ```
+## Possible Caveats
+1. The docker container access the MySQL 3306 port via the 3307 port due to the fact that MySQL server's default port is 3306 and cannot be run by Docker. So make sure the SQL queries are entered in 3307 connection. 
+2. While testing the endpoints, there are chances that you may run into this error:
+```bash
+Error: connect ECONNREFUSED 127.0.0.1:42395
+```
+&emsp; This is due to the fact that, the root user in MySQL might be configured to connect only to localhost and not any other networks, hence the &emsp; Docker container won't be able to make a connection. To resolve this issue, follow the steps [here](https://github.com/stsvilik/wdio-docker-service/issues/78)
