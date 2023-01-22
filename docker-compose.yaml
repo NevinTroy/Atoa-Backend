@@ -9,8 +9,6 @@ services:
     volumes: 
       - .:/app
       - /app/node_modules
-    depends_on: 
-      - mysql_server
   
   mysql_server:
     image: mysql:8.0
@@ -18,4 +16,4 @@ services:
       - 3307:3306
     environment: 
       - MYSQL_DATABASE=transaction_app
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=password

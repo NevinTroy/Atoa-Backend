@@ -18,10 +18,10 @@ app.use(cors());
 const db= knex ({
   client: 'mysql2',
   connection: {
-    host: '127.0.0.1',
+    host: 'mysql_server',
     port: 3306,
     user: 'root',
-    password: '',
+    password: 'password',
     database: 'transaction_app'
   }
 });
@@ -48,6 +48,6 @@ app.post('/signUp', (req, res) => {handleSignUp(req,res,db,bcrypt,jwt)});
 app.post('/login', (req, res) => {handleLogIn(req,res,db,bcrypt,jwt)});
 app.post('/transactionList', auth, (req, res) => {handleTransactionList(req,res,db,jwt)});
 
-app.listen(5000, () =>{
+app.listen(3000, () =>{
   console.log('Server started on port 3000');
 });

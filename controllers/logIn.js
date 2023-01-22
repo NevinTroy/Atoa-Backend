@@ -1,6 +1,6 @@
 const handleLogIn=(req,res,db,bcrypt,jwt)=>{
     const {mobile, password}=req.body;
-    db.select('*').from('users').where('mobile','=',mobile)
+    db.select('*').from('USERS').where('mobile','=',mobile)
     .then(data=>{
         const user=data[0];  
         const isValid=bcrypt.compareSync(password, data[0].password);

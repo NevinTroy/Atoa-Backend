@@ -1,7 +1,7 @@
 const handleSignUp=(req,res,db,bcrypt,jwt)=>{
     const {name, email, mobile, password}=req.body;
     const hash=bcrypt.hashSync(password, 10);
-    db('users')
+    db('USERS')
     .insert({
       name: name,
       email: email,
@@ -9,7 +9,7 @@ const handleSignUp=(req,res,db,bcrypt,jwt)=>{
       password: hash
     })
     .then(data=>{
-      db.select('*').from('users').where('id','=',data[0])
+      db.select('*').from('USERS').where('id','=',data[0])
       .then(data=>{
         const user=data[0];
         let accessToken=jwt.sign(user,"access",{expiresIn:'5m'});

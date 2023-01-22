@@ -9,7 +9,7 @@ const handleTransactionList=(req,res,db,jwt)=>{
         
         db
         .select('name','image_url','amount','type','currency')
-        .from('transactions')
+        .from('TRANSACTIONS')
         .whereBetween('id',[startIndex,endIndex])
         .then(data=>{
             res.json({
