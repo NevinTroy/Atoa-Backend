@@ -15,7 +15,7 @@ CREATE TABLE TRANSACTIONS(
     image_url VARCHAR(255) NOT NULL,
     amount INT NOT NULL,
     type ENUM('debit', 'credit') NOT NULL,
-    currency SYMBOL NOT NULL
+    currency CHAR(1) NOT NULL
 );
 
 INSERT INTO USERS (name, email, mobile, password) VALUES ('John Doe','johndoe@gmail.com','1234567890','123456');
@@ -25,3 +25,4 @@ INSERT INTO TRANSACTIONS (name, image_url, amount, type, currency) VALUES ('Flip
 INSERT INTO TRANSACTIONS (name, image_url, amount, type, currency) VALUES ('Paytm','https://www.paytm.com',3000,'debit','₹');
 INSERT INTO TRANSACTIONS (name, image_url, amount, type, currency) VALUES ('Google','https://www.google.com',4000,'debit','₹');
 INSERT INTO TRANSACTIONS (name, image_url, amount, type, currency) VALUES ('Facebook','https://www.facebook.com',5000,'debit','₹');
+

@@ -1,3 +1,7 @@
+// Description: This file contains the logic for signing up a new user
+//passwords are hashed using bcrypt for 10 salt rounds and then stored in the database
+//jwt access tokens and refresh tokens are generated for the user and sent back to the client
+
 const handleSignUp=(req,res,db,bcrypt,jwt)=>{
     const {name, email, mobile, password}=req.body;
     const hash=bcrypt.hashSync(password, 10);
@@ -9,7 +13,10 @@ const handleSignUp=(req,res,db,bcrypt,jwt)=>{
       password: hash
     })
     .then(data=>{
-      db.select('*').from('USERS').where('id','=',data[0])
+      db
+      .select('*')
+      .from('USERS')
+      .where('id','=',data[0])
       .then(data=>{
         const user=data[0];
         let accessToken=jwt.sign(user,"access",{expiresIn:'5m'});
@@ -21,9 +28,7 @@ const handleSignUp=(req,res,db,bcrypt,jwt)=>{
         })
       })
     })
-    .catch(err=>{
-      res.send(err);
-    })
+    .catch(err=>{res.json("Error signing up "+err)});
 }
 
 module.exports={

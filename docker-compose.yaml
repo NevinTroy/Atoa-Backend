@@ -17,3 +17,8 @@ services:
     environment: 
       - MYSQL_DATABASE=transaction_app
       - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - my-datavolume:/var/lib/mysql
+      
+volumes:
+  my-datavolume:
