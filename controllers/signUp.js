@@ -4,6 +4,14 @@
 
 const handleSignUp=(req,res,db,bcrypt,jwt)=>{
     const {name, email, mobile, password}=req.body;
+    
+    const emailRegex =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const mobileRegex=/^[0-9]{10}$/;
+    
+    if(!name || !email || !mobile || !password || !emailRegex.test(email) || !mobileRegex.test(mobile)){
+        return res.status(400).json('Incorrect form submission');
+    }
+
     const hash=bcrypt.hashSync(password, 10);
     db('USERS')
     .insert({
