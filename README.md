@@ -1,5 +1,4 @@
-# Atoa-Backend-Submission
-This project is the submission for the candidature of Aota Node.js intern by Nevin Mathews Kuruvilla.
+# Atoa-Backend
 ## Introduction
 This is a simple backend API built using Node.js, Express.js, MySQL and Docker.\
 The API has three routes: /signUp, /logIn and /transactionList.\
